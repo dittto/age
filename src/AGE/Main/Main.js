@@ -44,7 +44,8 @@ class Main {
             alexaContext.response.listen(response.getRepeat());
         }
 
-        alexaContext.emit(':responseReady');
+        alexaContext.emit(':saveState', true);
+        // alexaContext.emit(':responseReady');
     }
 
     __getStateResponse(response) {
