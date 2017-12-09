@@ -1,0 +1,12 @@
+version: '2.0'
+services:
+
+    age:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: age
+        environment:
+            SLS_DEBUG: "*"
+        volumes:
+            - .:/var/age

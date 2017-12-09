@@ -1,0 +1,17 @@
+{
+  "name": "DecisionTree",
+  "version": "1.0.0",
+  "description": "Alexa Decision Tree template",
+  "main": "handler.js",
+  "dependencies": {
+    "alexa-sdk": "^1.0.0",
+    "deepmerge": "^1.5.2",
+    "fs": "0.0.1-security",
+    "serverless-shared-vars": "^1.0.2",
+    "serverless-age-config": "^1.0.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {},
+  "author": "Amazon.com",
+  "license": "SEE LICENSE IN license.md"
+}

@@ -1,0 +1,59 @@
+utterances:
+    ContinueIntent:
+        - "{ContinueCommand}."
+    HelpIntent:
+        - "Help me."
+        - "Help."
+    MoveIntent:
+        - "Go {Direction}."
+        - "Move {Direction}."
+    PullIntent:
+        - "Pull {Object}."
+    PushIntent:
+        - "Push {Object}."
+    RepeatIntent:
+        - "Look around."
+        - "Say that again."
+        - "Repeat."
+    SayIntent:
+        - "Say {Command}."
+        - "Speak to {Command}."
+    UseIntent:
+        - "Use {ItemOrObject1}."
+        - "Use {ItemOrObject1} with {ItemOrObject2}."
+        - "Use {ItemOrObject1} on {ItemOrObject2}."
+
+intents:
+    ContinueIntent:
+        ContinueCommand: continuecommand
+    MoveIntent:
+        Direction: direction
+    PullIntent:
+        Object: object
+    PushIntent:
+        Object: object
+    SayIntent:
+        Command: command
+    UseIntent:
+        ItemOrObject1: itemorobject1
+        ItemOrObject2: itemorobject2
+
+slot_values:
+    continuecommand:
+        - yes
+        - no
+    direction:
+        - north
+        - south
+        - east
+        - west
+        - up
+        - down
+
+slots:
+    itemorobject1:
+        - item
+        - object
+    itemorobject2:
+        - item
+        - object

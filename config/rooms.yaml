@@ -1,0 +1,246 @@
+default_room: "001"
+
+rooms:
+    "001":
+        descriptions:
+            -
+                description: You're in a room. There's a table with a key on it and a locked door to the east.
+                repeat: Get to the choppa
+            -
+                has_flags: [inventory_brass_key]
+                description: You're in a room. There's a table and a locked door to the east.
+            -
+                has_flags: [inventory_brass_key, open_door]
+                description: You're in a room. There's a table and an unlocked door to the east.
+        repeat: Hurry, or we're through
+#        help:
+#            description: You can dance the fandango
+#            repeat: or not
+#        unhandled:
+#            description: It's rude to mumble
+#            repeat: Say "help" to get some help
+        load_game:
+            description: Welcome to back to AGE test. You're still in the first room. Would you like to continue where you left off? "yes" or "no".
+        items:
+            - brass_key
+        objects:
+            door:
+                name: Door
+                description: The door looks ancient and solid, closer to stone than wood. You can see a brass keyhole by the handle.
+        links:
+            -
+                checks:
+                    intents:
+                        -
+                            name: Use
+                            item_or_object: door
+                        -
+                            name: Move
+                            direction: east
+                    has_flags: [open_door]
+                actions:
+                    link: "002"
+            -
+                checks:
+                    intents:
+                        -
+                            name: Use
+                            item_or_object: [brass_key, door]
+                    has_flags: [inventory_brass_key]
+                actions:
+                    description: With a heavy thunk, the key turns and the door unlocks.
+                    create_room_flags: [open_door]
+                    remove_from_inventory: brass_key
+            -
+                checks:
+                    intents:
+                        -
+                            name: Use
+                            item_or_object: door
+                        -
+                            name: Move
+                            direction: east
+                actions:
+                    description: The door is locked and will not budge.
+            -
+                checks:
+                    intents:
+                        -
+                            name: PickUp
+                            item_or_object: brass_key
+                actions:
+                    description: You walk over to the table and take the brass key.
+                    add_to_inventory: [brass_key]
+
+
+    "002":
+        descriptions:
+            -
+                description: You're in a courtyard. The sun is setting. A jester is waving at you. There is a door to the west, one to the south, and another to the north.
+            -
+                has_flags:
+                    second_room_jester_feelings:
+                        condition: less_than
+                        value: 0
+                description: You're in a courtyard. The sun is setting. A jester is staring at you. There is a door to the west, one to the south, and another to the north.
+            -
+                has_flags:
+                    second_room_jester_feelings:
+                        condition: greater_than
+                        value: 0
+                description: You're in a courtyard. The sun is setting. A jester is smiling at you. There is a door to the west, one to the south, and another to the north.
+        objects:
+            west_door:
+                name: west door
+                description: The door looks ancient and solid, closer to stone than wood. You can see a brass keyhole by the handle.
+            north_door:
+                name: north door
+                description: There appears to a sign stuck to the door saying "Go this way"
+            south_door:
+                name: south door
+                description: The southern door seems to be smouldering.
+            jester:
+                name: jester
+                description: The jester doesn't look funny.
+        links:
+            -
+                checks:
+                    intents:
+                        -
+                            name: Use
+                            item_or_object: west_door
+                        -
+                            name: Move
+                            direction: west
+                actions:
+                    link: "001"
+            -
+                checks:
+                    intents:
+                        -
+                            name: Use
+                            item_or_object: south_door
+                        -
+                            name: Move
+                            direction: south
+                actions:
+                    link: "004"
+            -
+                checks:
+                    intents:
+                        -
+                            name: Use
+                            item_or_object: north_door
+                        -
+                            name: Move
+                            direction: north
+                actions:
+                    link: "003"
+            -
+                checks:
+                    intents:
+                        -
+                            name: Say
+                            command: jester
+                actions:
+                    link: "002-jester-1"
+
+    "002-jester-1":
+        descriptions:
+            -
+                description: Hello there. I'm a jester with a puzzle for you. Would you like to hear it?
+            -
+                has_flags:
+                    second_room_jester_feelings:
+                        condition: less_than
+                        value: 0
+                description: Do you want to hear it then?
+            -
+                has_flags:
+                    second_room_jester_feelings:
+                        condition: greater_than
+                        value: 0
+                description: Hello again. Would you like to hear the puzzle again?
+        undefined: It's rude to mumble. What would like to answer?
+        links:
+            -
+                checks:
+                    intents:
+                        -
+                            name: Say
+                            command: yes
+                actions:
+                    link: "002-jester-2"
+            -
+                checks:
+                    intents:
+                        -
+                            name: Say
+                            command: no
+                actions:
+                    create_world_flags:
+                        second_room_jester_feelings:
+                            decrement: 1
+                    link: "002"
+
+    "002-jester-2":
+        description: What's black with orange and red all over? The fiery death that awaits to the south... I'm not a very good jester am I?
+        force_link:
+            create_world_flags:
+                second_room_jester_feelings:
+                    increment: 2
+            link: "002-jester-3"
+
+    "002-jester-3":
+        description: Oh, look at this - the north door looks quite nice.
+        force_link:
+            create_world_flags:
+                second_room_jester_feelings:
+                    increment: 1
+            link:
+                state: "002"
+                ignore_description: true
+
+    "003":
+        description: The room is empty except a switch. There is a door to the south.
+        objects:
+            switch:
+                name: switch
+            door:
+                name: door
+        links:
+            -
+                checks:
+                    intents:
+                        -
+                            name: Pull
+                            object: switch
+                actions:
+                    link: "005"
+            -
+                checks:
+                    intents:
+                        -
+                            name: Push
+                            object: switch
+                actions:
+                    link: "005"
+            -
+                checks:
+                    intents:
+                        -
+                            name: Use
+                            item_or_object: door
+                        -
+                            name: Move
+                            direction: south
+                actions:
+                    link: "002"
+
+    "004":
+        description: There's a bright light and then nothing.
+        is_game_over: true
+
+    "005":
+        description: Well done. You have completed the game.
+        is_game_over: true

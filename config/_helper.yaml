@@ -1,0 +1,15 @@
+slot_values:
+    command:
+        - jester
+        - yes
+        - no
+    credit:
+        - Nick Stacey
+    item:
+        - brass key
+    object:
+        - door
+        - west door
+        - south door
+        - north door
+        - switch

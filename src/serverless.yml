@@ -1,0 +1,47 @@
+service: decision-tree
+
+frameworkVersion: ">=1.4.0 <2.0.0"
+
+plugins:
+  - serverless-shared-vars
+  - serverless-age-config
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: ${self:custom.shared.region}
+  iamRoleStatements:
+    -
+      Effect: "Allow"
+      Action:
+        - 'dynamodb:*'
+      Resource: arn:aws:dynamodb:${self:custom.shared.region}:*:table/${self:custom.shared.dynamodb_table}
+
+functions:
+  age:
+    handler: handler.age
+    events:
+      - alexaSkill
+
+custom:
+  shared:
+    region: eu-west-1
+    dynamodb_table: show_space_monsters
+
+resources:
+  Resources:
+    ShowSpaceMonstersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.shared.dynamodb_table}
+        AttributeDefinitions:
+          -
+            AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: userId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
