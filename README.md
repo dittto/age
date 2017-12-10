@@ -41,6 +41,14 @@ serverless help
 
 ### Serverless settings
 
+```bash
+serverless invoke local --function age --path test/state/StartMenu/01.json
+```
+
+```bash
+serverless deploy
+```
+
 ### AGE configs
   
 config files

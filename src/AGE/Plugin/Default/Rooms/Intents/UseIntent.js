@@ -14,11 +14,11 @@ class UseIntent extends BaseIntent {
 
     processSlots (rooms, slots) {
         let itemOrObjects = [];
-        if (slots.ItemOrObject1 && slots.ItemOrObject1.value) {
-            itemOrObjects.push(slots.ItemOrObject1.value);
+        if (slots.ItemOrObjectA && slots.ItemOrObjectA.value) {
+            itemOrObjects.push(slots.ItemOrObjectA.value);
         }
-        if (slots.ItemOrObject2 && slots.ItemOrObject2.value) {
-            itemOrObjects.push(slots.ItemOrObject2.value);
+        if (slots.ItemOrObjectB && slots.ItemOrObjectB.value) {
+            itemOrObjects.push(slots.ItemOrObjectB.value);
         }
 
         return {'item_or_object': rooms.getItemsOrObjectsByName(itemOrObjects)};

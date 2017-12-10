@@ -9,7 +9,7 @@ module.exports.age = function (event, context, callback) {
     const alexaHandler = Alexa.handler(event, context);
 
     // load config and plugins
-    const config = new AGE.Config('../config/');
+    const config = new AGE.Config('./config/');
     const plugins = new AGE.Plugins(config)
         .loadPlugins()
         .buildStates();

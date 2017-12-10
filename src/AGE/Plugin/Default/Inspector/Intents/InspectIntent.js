@@ -15,7 +15,7 @@ class InspectIntent extends BaseIntent {
 
     processSlots (rooms, slots) {
         const state = this.getConfig().getState();
-        const itemOrObjectName = slots.ItemOrObject1.value.toLowerCase();
+        const itemOrObjectName = slots.ItemOrObjectA.value.toLowerCase();
 
         let response = new Response();
         if (this.getConfig().getBaseConfig('default_responses').inspector_repeat) {

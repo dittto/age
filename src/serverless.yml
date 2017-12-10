@@ -1,4 +1,4 @@
-service: decision-tree
+service: aural-game-engine
 
 frameworkVersion: ">=1.4.0 <2.0.0"
 

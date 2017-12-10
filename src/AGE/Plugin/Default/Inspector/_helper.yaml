@@ -1,8 +1,8 @@
 utterances:
-    Inspectintent:
-        - "Inpect {ItemOrObject1}."
-        - "Look at {ItemOrObject1}."
+    InspectIntent:
+        - "Inpect {ItemOrObjectA}"
+        - "Look at {ItemOrObjectA}"
 
 intents:
     InspectIntent:
-        ItemOrObject1: itemorobject
+        ItemOrObjectA: itemorobjecta

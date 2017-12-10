@@ -1,20 +1,24 @@
 utterances:
     CreditsIntent:
-        - "Who made this?"
-        - "Show me the credits."
-        - "Credits."
+        - "Who made this"
+        - "Show me the credits"
+        - "Credits"
     CreditsMoreIntent:
-        - "Tell me more about {Credit}."
-        - "What about {Credit}."
+        - "Tell me more about {Credit}"
+        - "What about {Credit}"
     HelpIntent:
-        - "Help me."
-        - "Help."
+        - "Help me"
+        - "Help"
     MainMenuIntent:
-        - "Main menu."
+        - "Main menu"
     NewGameIntent:
-        - "Start a new game."
-        - "New game."
+        - "Start a new game"
+        - "New game"
 
 intents:
+    CreditsIntent: {}
     CreditsMoreIntent:
         Credit: credit
+    HelpIntent: {}
+    MainMenuIntent: {}
+    NewGameIntent: {}

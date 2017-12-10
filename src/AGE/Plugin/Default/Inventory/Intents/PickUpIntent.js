@@ -13,7 +13,7 @@ class PickUpIntent extends BaseIntent {
     }
 
     processSlots (rooms, slots) {
-        const itemName = slots.ItemOrObject1.value;
+        const itemName = slots.ItemOrObjectA.value;
         const state = this.getConfig().getState();
 
         // item has to be in the current room

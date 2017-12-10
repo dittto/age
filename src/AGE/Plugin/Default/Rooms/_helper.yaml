@@ -1,42 +1,44 @@
 utterances:
     ContinueIntent:
-        - "{ContinueCommand}."
+        - "{ContinueCommand}"
     HelpIntent:
-        - "Help me."
-        - "Help."
+        - "Help me"
+        - "Help"
     MoveIntent:
-        - "Go {Direction}."
-        - "Move {Direction}."
+        - "Go {Direction}"
+        - "Move {Direction}"
     PullIntent:
-        - "Pull {Object}."
+        - "Pull {Object}"
     PushIntent:
-        - "Push {Object}."
+        - "Push {Object}"
     RepeatIntent:
-        - "Look around."
-        - "Say that again."
-        - "Repeat."
+        - "Look around"
+        - "Say that again"
+        - "Repeat"
     SayIntent:
-        - "Say {Command}."
-        - "Speak to {Command}."
+        - "Say {Command}"
+        - "Speak to {Command}"
     UseIntent:
-        - "Use {ItemOrObject1}."
-        - "Use {ItemOrObject1} with {ItemOrObject2}."
-        - "Use {ItemOrObject1} on {ItemOrObject2}."
+        - "Use {ItemOrObjectA}"
+        - "Use {ItemOrObjectA} with {ItemOrObjectB}"
+        - "Use {ItemOrObjectA} on {ItemOrObjectB}"
 
 intents:
     ContinueIntent:
         ContinueCommand: continuecommand
+    HelpIntent: {}
     MoveIntent:
         Direction: direction
     PullIntent:
         Object: object
     PushIntent:
         Object: object
+    RepeatIntent: {}
     SayIntent:
         Command: command
     UseIntent:
-        ItemOrObject1: itemorobject1
-        ItemOrObject2: itemorobject2
+        ItemOrObjectA: itemorobjecta
+        ItemOrObjectB: itemorobjectb
 
 slot_values:
     continuecommand:
@@ -51,9 +53,9 @@ slot_values:
         - down
 
 slots:
-    itemorobject1:
+    itemorobjecta:
         - item
         - object
-    itemorobject2:
+    itemorobjectb:
         - item
         - object

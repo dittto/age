@@ -1,17 +1,18 @@
 {
-  "name": "DecisionTree",
+  "name": "AGE",
   "version": "1.0.0",
-  "description": "Alexa Decision Tree template",
+  "repository": "https://github.com/dittto/age",
+  "description": "Aural Game Engine with test code",
   "main": "handler.js",
   "dependencies": {
     "alexa-sdk": "^1.0.0",
     "deepmerge": "^1.5.2",
     "fs": "0.0.1-security",
-    "serverless-shared-vars": "^1.1.0",
-    "serverless-age-config": "^1.0.0",
+    "serverless-shared-vars": "^1.1.1",
+    "serverless-age-config": "^1.0.1",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {},
-  "author": "Amazon.com",
-  "license": "SEE LICENSE IN license.md"
+  "author": "ditt.to",
+  "license": "MIT"
 }
