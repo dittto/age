@@ -1,4 +1,15 @@
+# Update these values to match your settings
+
 service: aural-game-engine
+
+custom:
+  shared:
+    region: eu-west-1
+    dynamodb_table: show_space_monsters
+    dynamodb_read_capacity: 1
+    dynamodb_write_capacity: 1
+
+# Standard config setup. Change these if you know what they do and you want more freedom
 
 frameworkVersion: ">=1.4.0 <2.0.0"
 
@@ -23,11 +34,6 @@ functions:
     events:
       - alexaSkill
 
-custom:
-  shared:
-    region: eu-west-1
-    dynamodb_table: show_space_monsters
-
 resources:
   Resources:
     ShowSpaceMonstersTable:
@@ -43,5 +49,5 @@ resources:
             AttributeName: userId
             KeyType: HASH
         ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+          ReadCapacityUnits: ${self:custom.shared.dynamodb_read_capacity}
+          WriteCapacityUnits: ${self:custom.shared.dynamodb_write_capacity}
