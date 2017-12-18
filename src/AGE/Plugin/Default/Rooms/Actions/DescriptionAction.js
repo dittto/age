@@ -25,8 +25,9 @@ class DescriptionAction {
     run (response, actionData) {
         response.setText(actionData, this.config.getState());
 
-        if (this.config.getBaseConfig('default_responses').room_repeat) {
-            response.setRepeat(this.config.getBaseConfig('default_responses').room_repeat);
+        const roomDefaults = this.config.getBaseConfig('default_responses').room;
+        if (!!roomDefaults && !!roomDefaults.repeat) {
+            response.setRepeat(roomDefaults.repeat);
         }
 
         return response;

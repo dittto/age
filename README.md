@@ -116,22 +116,24 @@ There are some other options in `src/serverless.yml` but these are very much for
  
 ### The src/config/* files
 
-These config files are what you'll use to create your game. Because they're quite complex, they've got their own documentation section:
+These config files are what you'll use to create your game. Because some are quite complex, they've got their own documentation section:
 
-- [config.yaml](documentation/config/config.yaml)
-- [items.yaml](documentation/config/items.yaml)
-- [rooms.yaml](documentation/config/rooms.yaml)
-- [start_menu.yaml](documentation/config/start_menu.yaml)
+- [config.yaml](documentation/config/config.yaml.md)
+- [items.yaml](documentation/config/items.yaml.md)
+- [rooms.yaml](documentation/config/rooms.yaml.md)
+- [start_menu.yaml](documentation/config/start_menu.yaml.md)
+
+With most plugins created, and in the main config directory, there is an additional `_helper.yaml` file. These are covered below in the config generator section. 
 
 ## Plugins
 
 AGE is made up of a set of plugins. Some do a lot of work, like `rooms`, and others just provide useful extra functionality, such as `inventory`. The default ones are:
 
-- [flags](documentation/plugins/flags.yaml)
-- [inspector](documentation/plugins/inspector.yaml)
-- [inventory](documentation/plugins/inventory.yaml)
-- [rooms](documentation/plugins/rooms.yaml)
-- [start_menu](documentation/plugins/start_menu.yaml)
+- [flags](documentation/plugins/flags.yaml.md)
+- [inspector](documentation/plugins/inspector.yaml.md)
+- [inventory](documentation/plugins/inventory.yaml.md)
+- [rooms](documentation/plugins/rooms.yaml.md)
+- [start_menu](documentation/plugins/start_menu.yaml.md)
 
 To add a custom plugin to AGE, follow the instructions in [adding a custom plugin](documentation/plugins/_custom.yaml).
 

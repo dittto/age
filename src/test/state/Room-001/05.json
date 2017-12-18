@@ -27,8 +27,8 @@
     "intent": {
       "name": "PickUpIntent",
       "slots": {
-        "ItemOrObject1": {
-          "name": "ItemOrObject1",
+        "ItemOrObjectA": {
+          "name": "ItemOrObjectA",
           "value": "brass key"
         }
       }

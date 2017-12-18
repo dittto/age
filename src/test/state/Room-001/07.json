@@ -27,12 +27,12 @@
     "intent": {
       "name": "UseIntent",
       "slots": {
-        "ItemOrObject1": {
-          "name": "ItemOrObject1",
+        "ItemOrObjectA": {
+          "name": "ItemOrObjectA",
           "value": "door"
         },
-        "ItemOrObject2": {
-          "name": "ItemOrObject2",
+        "ItemOrObjectB": {
+          "name": "ItemOrObjectB",
           "value": "brass key"
         }
       }

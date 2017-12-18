@@ -40,7 +40,7 @@ class PickUpIntent extends BaseIntent {
     __returnFailedResponse(itemName, state) {
         const response = new Response();
 
-        const failed = this.getConfig().getBaseConfig('default_responses').room_pickup.failed;
+        const failed = this.getConfig().getBaseConfig('default_responses').pickup.failed;
 
         if (failed && failed.description) {
             response.setText(failed.description.replace(':itemName', itemName), state);
@@ -56,7 +56,7 @@ class PickUpIntent extends BaseIntent {
     __returnAlreadyHaveResponse(itemName, state) {
         const response = new Response();
 
-        const already = this.getConfig().getBaseConfig('default_responses').room_pickup.already;
+        const already = this.getConfig().getBaseConfig('default_responses').pickup.already;
 
         if (already && already.description) {
             response.setText(already.description.replace(':itemName', itemName), state);

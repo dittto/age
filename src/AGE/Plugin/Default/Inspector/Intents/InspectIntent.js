@@ -16,10 +16,11 @@ class InspectIntent extends BaseIntent {
     processSlots (rooms, slots) {
         const state = this.getConfig().getState();
         const itemOrObjectName = slots.ItemOrObjectA.value.toLowerCase();
+        const inspectorDefaults = this.getConfig().getBaseConfig('default_responses').inspector;
 
         let response = new Response();
-        if (this.getConfig().getBaseConfig('default_responses').inspector_repeat) {
-            response.setRepeat(this.getConfig().getBaseConfig('default_responses').inspector_repeat);
+        if (!!inspectorDefaults && !!inspectorDefaults.repeat) {
+            response.setRepeat(inspectorDefaults.repeat);
         }
 
         const matchedItems = rooms.getItemsByName(itemOrObjectName);
@@ -56,7 +57,7 @@ class InspectIntent extends BaseIntent {
             }
         });
 
-        this.setResponse(response.setText(this.getConfig().getBaseConfig('default_responses').failed_inspect, state));
+        this.setResponse(response.setText(inspectorDefaults.failed, state));
     }
 }
 

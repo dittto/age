@@ -36,7 +36,8 @@ class BaseIntent {
         }
 
         if (actions === null) {
-            return new Unhandled(this.config, this.plugins).process(slots);
+            const response = new Unhandled(this.config, this.plugins).process(slots);
+            return this.processUnhandledError(slots, processedSlots, response);
         }
 
         this.setResponse(
@@ -75,6 +76,10 @@ class BaseIntent {
 
     processSlots(slots) {
         return slots;
+    }
+
+    processUnhandledError(originalSlots, processedSlots, response) {
+        return response;
     }
 
     preRunActions(actions) {

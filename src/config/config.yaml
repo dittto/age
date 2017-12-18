@@ -1,22 +1,29 @@
 config:
     default_responses:
         repeat: If you want to hear that again, say "repeat".
-        failed_use_solo: You can't use :object.
-        failed_use_dual: You can't use :item with :object.
-        failed_inspect: You can not inspect that item at this moment.
 
         load_game:
             description: Welcome to back to AGE test. Would you like to continue where you left off? "yes" or "no".
             repeat: You have 8 seconds to comply. "yes" or "no".
 
-        same_state_question: What now?
+        unhandled:
+            description: I'm not sure what you mean.
+            repeat: Say "help" to get some help if you don't know what to say.
 
-        room_help:
-            description: We're not going to help you.
-            repeat: I said, we're not going to help.
-        room_repeat: Hurry now.
+        # same_state_question: What now?
 
-        room_pickup:
+        room:
+            help:
+                description: We're not going to help you.
+                repeat: I said, we're not going to help.
+            repeat: Hurry now.
+
+        use:
+            failed:
+                solo: You can't use :itemNameA.
+                dual: You can't use :itemNameA with :itemNameB.
+
+        pickup:
             failed:
                 description: The item ":itemName" cannot be used at this moment.
                 repeat: Another repeat.
@@ -24,11 +31,9 @@ config:
                 description: You already have ":itemName".
                 repeat: Another repeat.
 
-        inspector_repeat: Hurry now.
-
-        unhandled:
-            description: I'm not sure what you mean.
-            repeat: Say "help" to get some help if you don't know what to say.
+        inspector:
+            failed: You can not inspect that item at this moment.
+            repeat: Hurry now.
 
     plugins:
         - Rooms

@@ -30,8 +30,8 @@
     "intent": {
       "name": "UseIntent",
       "slots": {
-        "ItemOrObject1": {
-          "name": "ItemOrObject1",
+        "ItemOrObjectA": {
+          "name": "ItemOrObjectA",
           "value": "west door"
         }
       }

@@ -18,13 +18,13 @@ class HelpIntent extends BaseIntent {
         let response = new Response();
 
         const defaultResponses = this.config.getBaseConfig('default_responses') || {};
-        if (!!defaultResponses.room_help) {
-            if (defaultResponses.room_help.description) {
-                response.setText(defaultResponses.room_help.description, room.getState());
+        if (!!defaultResponses.room && !!defaultResponses.room.help) {
+            if (defaultResponses.room.help.description) {
+                response.setText(defaultResponses.room.help.description, room.getState());
             }
 
-            if (defaultResponses.room_help.repeat) {
-                response.setRepeat(defaultResponses.room_help.repeat);
+            if (defaultResponses.room.help.repeat) {
+                response.setRepeat(defaultResponses.room.help.repeat);
             }
         }
 
