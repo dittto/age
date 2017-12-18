@@ -13,14 +13,15 @@ class CreditsMoreIntent {
     }
 
     process (slots) {
-        const singleCredits = this.config.get('start_menu').single_credit;
-        const suffix = this.config.get('start_menu').single_credit_suffix;
-        const repeat = this.config.get('start_menu').single_credit_repeat;
-        const unmatched = this.config.get('start_menu').unmatched_single_credit;
+        const credits = this.config.get('start_menu').credits.list;
+        const people = credits.people;
+        const suffix = credits.suffix;
+        const repeat = credits.repeat;
+        const unmatched = credits.unmatched;
 
-        if (!!singleCredits[slots.Credit.value]) {
+        if (!!people[slots.Credit.value]) {
             return new Response()
-                .setText(singleCredits[slots.Credit.value] + ' ' + suffix, this.config.getState())
+                .setText(people[slots.Credit.value] + ' ' + suffix, this.config.getState())
                 .setRepeat(repeat);
         }
 

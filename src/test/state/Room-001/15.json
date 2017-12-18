@@ -30,8 +30,8 @@
     "intent": {
       "name": "ContinueIntent",
       "slots": {
-        "command": {
-          "name": "command",
+        "ContinueCommand": {
+          "name": "ContinueCommand",
           "value": "no"
         }
       }

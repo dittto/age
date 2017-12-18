@@ -14,9 +14,11 @@ class CreditsIntent {
 
     process (slots) {
         this.config.setState('Credits');
+        const credits = this.config.get('start_menu').credits;
 
         return new Response()
-            .setText(this.config.get('start_menu').credits, this.config.getState());
+            .setText(credits.description, this.config.getState())
+            .setRepeat(credits.repeat);
     }
 }
 

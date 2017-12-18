@@ -5,15 +5,18 @@ start_menu:
 
     new_game_prefix: This is a spooky new game.
 
-    credits: |-
-        AGE test created by Nick Stacey. Say the name of the person you want to here more about,
-        or main menu
-    single_credit:
-        "Nick Stacey": |-
-            The author of AGE.
-    single_credit_suffix: Say another name, credits to list all credits again, or main menu
-    unmatched_single_credit: That name could not be found. Say another name, credits to list all credits again, or main menu
-    single_credit_repeat: Say another name, credits to list all credits again, or main menu
+    credits:
+        description: |-
+            AGE test created by Nick Stacey. Say the name of the person you want to here more about,
+            or main menu
+        repeat: Say the name of the person you want to here more about, or main menu
+        list:
+            people:
+                "Nick Stacey": |-
+                    The author of AGE.
+            suffix: Say another name, credits to list all credits again, or main menu
+            unmatched: That name could not be found. Say another name, credits to list all credits again, or main menu
+            repeat: Say another name, credits to list all credits again, or main menu
 
     help:
         MainMenu:
