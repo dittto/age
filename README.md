@@ -142,10 +142,10 @@ To add a custom plugin to AGE, follow the instructions in [adding a custom plugi
 As briefly touched on before, there is some very simple method of testing built into AGE. These are sample request JSON files stored in `src/test`. These can be used by running:
 
 ```bash
-serverless invoke local --function age --path test/state/StartMenu/01.json
+serverless invoke local --function age --use_local_db 1 --path test/state/StartMenu/01.json
 ```
 
-You do currently need internet access to run these or AWS will complain about a lack of access to DynamoDB (or just freeze).
+Note the use of the flag `use_local_db` above. This uses a local version of DynamoDB instead of the live version, for development on the go and easy testing.
 
 ## The config generator
 
@@ -162,3 +162,8 @@ serverless age-config
 Of these three files, `intents.json` and `SampleUtterances.txt` can be simply copied direct into your Alexa setup. `SlotValues.txt`, on the other hand requires a bit more manual work. The text in square brackets is your slot name, and the values are listed below it. Each of these needs to be created during your Alexa application setup.
 
 For references, the rest of this data comes from the plugins, which (if required) each contain a `_helper.json` that defines a list of utterances, intents, and slot values.
+
+
+## TODO
+- Update serverless-shared-vars git because of work with invoke
+- Push back to NPM

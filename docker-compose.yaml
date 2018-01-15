@@ -10,3 +10,11 @@ services:
             SLS_DEBUG: "*"
         volumes:
             - .:/var/age
+        links:
+            - age-db:age-db
+
+    age-db:
+        image: deangiberson/aws-dynamodb-local
+        container_name: age-db
+        expose:
+            - "8000"

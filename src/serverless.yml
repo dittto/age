@@ -4,6 +4,9 @@ service: aural-game-engine
 
 custom:
   shared:
+    use_local_db: ${opt:use_local_db}
+    local_db_host: ${opt:local_db_host, "age-db"}
+    local_db_port: ${opt:local_db_port, "8000"}
     region: eu-west-1
     dynamodb_table: show_space_monsters
     dynamodb_read_capacity: 1
