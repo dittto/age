@@ -32,5 +32,7 @@ RUN             apt-get clean && \
 # Fix vim controls
 RUN             echo "set term=xterm-256color" >> ~/.vimrc
 
+# TODO: make fake .aws credentials
+
 WORKDIR         /var/age/src
 CMD             ["tail", "-F", "-n0", "/etc/hosts"]

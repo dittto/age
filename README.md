@@ -162,8 +162,3 @@ serverless age-config
 Of these three files, `intents.json` and `SampleUtterances.txt` can be simply copied direct into your Alexa setup. `SlotValues.txt`, on the other hand requires a bit more manual work. The text in square brackets is your slot name, and the values are listed below it. Each of these needs to be created during your Alexa application setup.
 
 For references, the rest of this data comes from the plugins, which (if required) each contain a `_helper.json` that defines a list of utterances, intents, and slot values.
-
-
-## TODO
-- Update serverless-shared-vars git because of work with invoke
-- Push back to NPM

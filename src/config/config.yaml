@@ -41,3 +41,4 @@ config:
         - Inspector
         - Inventory
         - StartMenu
+        - age-insult-fighting/InsultFighting

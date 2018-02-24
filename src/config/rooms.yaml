@@ -13,6 +13,13 @@ rooms:
                 has_flags: [inventory_brass_key, open_door]
                 description: You're in a room. There's a table and an unlocked door to the east.
         repeat: Hurry, or we're through
+        insult_fighting:
+            chance: 100%
+            enemies: [generic_red, generic_yellow]
+            fight_once: false
+            hasnt_flags: [inventory_green_card]
+            actions:
+                add_to_inventory: [green_card]
 #        help:
 #            description: You can dance the fandango
 #            repeat: or not

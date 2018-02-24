@@ -1,0 +1,38 @@
+insults:
+    dairy_farmer:
+        insult: "You fight like a Dairy Farmer!"
+        responses:
+            - "How appropriate! You fight like a cow!"
+    end_for_you:
+        insult: "This is the END for you, you gutter crawling cur!"
+        responses:
+            - "And I've got a little TIP for you, get the POINT?"
+    family_reunion:
+        insult: "I've spoken with apes more polite than you!"
+        responses:
+            - "I'm glad to hear you attended your family reunion!"
+    fall_at_feet:
+        insult: "People fall at my feet when they see me coming!"
+        responses:
+            - "Even BEFORE they smell your breath?"
+
+enemies:
+    generic_red:
+        descriptions:
+            - "Generic description of a red-headed pirate"
+            - "Generic description of a red-headed pirate with a beard"
+    generic_yellow:
+        description: "Generic description of a yellow-bellied pirate"
+    sword_master:
+        description: "Sword master"
+        defend_only: true
+        insult_overrides:
+            filth_stupidity:
+                insult: "Now I know what filth and stupidity really are."
+                responses_from: [family_reunion]
+            long_lesson:
+                insult: "I've got a long, sharp lesson for you to learn today."
+                responses_from: [end_for_you]
+            tavern_floor:
+                insult: "I usually see people like you passed-out on tavern floor."
+                responses_from: [family_reunion, fall_at_feet]

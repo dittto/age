@@ -8,7 +8,7 @@
     "alexa-sdk": "^1.0.0",
     "deepmerge": "^1.5.2",
     "fs": "0.0.1-security",
-    "serverless-shared-vars": "^1.1.1",
+    "serverless-shared-vars": "^1.2",
     "serverless-age-config": "^1.0.1",
     "yamljs": "^0.3.0"
   },

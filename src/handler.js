@@ -26,8 +26,11 @@ module.exports.age = function (event, context, callback) {
         alexaHandler.dynamoDBClient = new AWS.DynamoDB({
             endpoint: new AWS.Endpoint('http://' + SharedVars.local_db_host + ':' + SharedVars.local_db_port)
         });
+        // TODO: create table
     }
 
     alexaHandler.dynamoDBTableName = SharedVars.dynamodb_table;
     alexaHandler.execute();
+
+    // TODO: delete table
 };
