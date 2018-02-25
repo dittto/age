@@ -18,10 +18,12 @@ class CreditsMoreIntent {
         const suffix = credits.suffix;
         const repeat = credits.repeat;
         const unmatched = credits.unmatched;
+        const lowerCasePeople = JSON.parse(JSON.stringify(people).toLowerCase());
+        const lowerCaseCredit = slots.Credit.value.toLowerCase();
 
-        if (!!people[slots.Credit.value]) {
+        if (!!lowerCasePeople[lowerCaseCredit]) {
             return new Response()
-                .setText(people[slots.Credit.value] + ' ' + suffix, this.config.getState())
+                .setText(lowerCasePeople[lowerCaseCredit] + ' ' + suffix, this.config.getState())
                 .setRepeat(repeat);
         }
 

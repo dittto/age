@@ -1,4 +1,6 @@
 config:
+    invocation_name: age test
+
     default_responses:
         repeat: If you want to hear that again, say "repeat".
 

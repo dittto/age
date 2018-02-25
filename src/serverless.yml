@@ -19,7 +19,7 @@ frameworkVersion: ">=1.4.0 <2.0.0"
 
 plugins:
   - serverless-shared-vars
-  - serverless-age-config
+  - age-config
 
 provider:
   name: aws
