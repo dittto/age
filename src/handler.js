@@ -1,5 +1,23 @@
 'use strict';
 
+function purgeDB(client, tableName)
+{
+    client.scan({
+        TableName: tableName,
+    }, (err, data) => {
+        if (!err) {
+            data.Items.forEach(obj => {
+                const params = {
+                    TableName: tableName,
+                    Key: {'userId': {'S': obj['userId']['S']}}
+                };
+
+                client.deleteItem(params, (err, data) => {});
+            });
+        }
+    });
+}
+
 module.exports.age = function (event, context, callback) {
     const AGE = require('./AGE'),
         AWS = require('aws-sdk'),
@@ -22,12 +40,18 @@ module.exports.age = function (event, context, callback) {
         alexaHandler.registerHandlers(handler);
     });
 
-    if (SharedVars.use_local_db) {
+    if (SharedVars.use_local_db == '1') {
         alexaHandler.dynamoDBClient = new AWS.DynamoDB({
             endpoint: new AWS.Endpoint('http://' + SharedVars.local_db_host + ':' + SharedVars.local_db_port)
         });
+
+        if (SharedVars.purge_local_db == '1') {
+            purgeDB(alexaHandler.dynamoDBClient, SharedVars.dynamodb_table);
+        }
     }
 
-    alexaHandler.dynamoDBTableName = SharedVars.dynamodb_table;
-    alexaHandler.execute();
+    setTimeout(() => {
+        alexaHandler.dynamoDBTableName = SharedVars.dynamodb_table;
+        alexaHandler.execute();
+    }, (SharedVars.use_local_db == '1' && SharedVars.purge_local_db == '1') ? 100 : 0);
 };

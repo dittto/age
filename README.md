@@ -142,10 +142,12 @@ To add a custom plugin to AGE, follow the instructions in [adding a custom plugi
 As briefly touched on before, there is some very simple method of testing built into AGE. These are sample request JSON files stored in `src/test`. These can be used by running:
 
 ```bash
-serverless invoke local --function age --use_local_db 1 --path test/state/StartMenu/01.json
+serverless invoke local --function age --use_local_db 1 --purge_local_db 1 --path test/state/StartMenu/01.json
 ```
 
 Note the use of the flag `use_local_db` above. This uses a local version of DynamoDB instead of the live version, for development on the go and easy testing.
+
+The above also uses `purge_local_db` to remove any previous test data. Use this when you want to use the local test scripts out of a valid order.
 
 ## The config generator
 
