@@ -5,7 +5,10 @@ const conditions = {
     GREATER_THAN_EQUAL: 'greater_than_equal',
     LESS_THAN: 'less_than',
     LESS_THAN_EQUAL: 'less_than_equal',
-    EQUAL: 'equal'
+    EQUAL: 'equal',
+    NOT_EQUAL: 'not_equal',
+    SET: 'set',
+    NOT_SET: 'not_set',
 };
 
 class SharedHasFlags {
@@ -74,21 +77,24 @@ class SharedHasFlags {
 
     __compareFlag(flagName, condition, comparisonValue, stateName = null) {
         let currentValue = this.__getFlag(flagName, stateName);
-        if (currentValue === null) {
-            return false;
-        }
 
         switch (condition) {
             case conditions.GREATER_THAN:
-                return currentValue > comparisonValue;
+                return currentValue !== null && typeof(comparisonValue) !== 'undefined' && currentValue > comparisonValue;
             case conditions.GREATER_THAN_EQUAL:
-                return currentValue > comparisonValue;
+                return currentValue !== null && typeof(comparisonValue) !== 'undefined' && currentValue >= comparisonValue;
             case conditions.LESS_THAN:
-                return currentValue > comparisonValue;
+                return currentValue !== null && typeof(comparisonValue) !== 'undefined' && currentValue < comparisonValue;
             case conditions.LESS_THAN_EQUAL:
-                return currentValue > comparisonValue;
+                return currentValue !== null && typeof(comparisonValue) !== 'undefined' && currentValue <= comparisonValue;
             case conditions.EQUAL:
-                return currentValue > comparisonValue;
+                return currentValue !== null && typeof(comparisonValue) !== 'undefined' && currentValue == comparisonValue;
+            case conditions.NOT_EQUAL:
+                return currentValue !== null && typeof(comparisonValue) !== 'undefined' && currentValue != comparisonValue;
+            case conditions.SET:
+                return currentValue !== null;
+            case conditions.NOT_SET:
+                return currentValue === null;
             default:
                 throw Error("Flag comparison condition '" + condition + "' not found");
         }

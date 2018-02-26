@@ -96,8 +96,9 @@ class Flags {
         const config = this.__getFlags();
 
         if (stateName !== null) {
-            config[stateName] = typeof config[stateName] === 'undefined' ? {} : config[stateName];
-            config[stateName][flagName] = valueModifier;
+            config.state = typeof config.state === 'undefined' ? {} : config.state;
+            config.state[stateName] = typeof config.state[stateName] === 'undefined' ? {} : config.state[stateName];
+            config.state[stateName][flagName] = valueModifier;
         }
         else {
             config.world = typeof config.world === 'undefined' ? {} : config.world;
@@ -111,9 +112,10 @@ class Flags {
         const config = this.__getFlags();
 
         if (stateName !== null) {
-            config[stateName] = typeof config[stateName] === 'undefined' ? {} : config[stateName];
-            config[stateName][flagName] = typeof config[stateName][flagName] === 'undefined' ? 0 : config[stateName][flagName];
-            config[stateName][flagName] += valueModifier;
+            config.state = typeof config.state === 'undefined' ? {} : config.state;
+            config.state[stateName] = typeof config.state[stateName] === 'undefined' ? {} : config.state[stateName];
+            config.state[stateName][flagName] = typeof config.state[stateName][flagName] === 'undefined' ? 0 : config.state[stateName][flagName];
+            config.state[stateName][flagName] += valueModifier;
         }
         else {
             config.world = typeof config.world === 'undefined' ? {} : config.world;

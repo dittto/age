@@ -68,6 +68,18 @@ rooms:
                         -
                             name: PickUp
                             item_or_object: brass_key
+                    has_flags: [inventory_brass_key]
+                actions:
+                    description: You already have the brass key.
+            -
+                checks:
+                    intents:
+                        -
+                            name: PickUp
+                            item_or_object: brass_key
+                    has_flags:
+                        inventory_brass_key:
+                            condition: not_set
                 actions:
                     description: You walk over to the table and take the brass key.
                     add_to_inventory: [brass_key]
