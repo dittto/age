@@ -12,8 +12,6 @@ config:
             description: I'm not sure what you mean.
             repeat: Say "help" to get some help if you don't know what to say.
 
-        # same_state_question: What now?
-
         room:
             help:
                 description: We're not going to help you.
@@ -38,8 +36,8 @@ config:
             repeat: Hurry now.
 
     plugins:
-        - Rooms
-        - Flags
-        - Inspector
-        - Inventory
-        - StartMenu
+        - Default/Rooms
+        - Default/Flags
+        - Default/Inspector
+        - Default/Inventory
+        - Default/StartMenu

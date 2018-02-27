@@ -4,13 +4,13 @@ AGE is a "Choose your own adventure" game engine for the Amazon Echo.
 
 You specify the **rooms** a player can move between, the items and objects they can interact with, and the valid commands per room. Then all you need to do is upload this to Amazon Lambda and setup an Alexa app.
  
-AGE uses an **inventory** for managing what you're carrying so far, but also a **flag** system to allow you to give a single room multiple states. This means that you define a room with a closed door but allow multiple ways to flag it as open such as unlocking it, or convincing a guard to open it, or a hidden switch. The aim is to allow you to crete the experience you want with as few limits as possible.
+AGE uses an **inventory** for managing what you're carrying so far, but also a **flag** system to allow you to give a single room multiple states. This means that you can define a room with a closed door but allow multiple ways to flag it as open such as unlocking it, or convincing a guard to open it, or a hidden switch. The aim is to allow you to create the experience you want with as few barriers as possible.
 
 It's likely there will always be some things about AGE that you want to alter. To assist with that, AGE supports **plugins** to allow you to add or alter functionality as you see fit. The base engine is made up from a set of generic plugins already, which we'll cover later on. 
 
 ## How to set AGE up
 
-When working with Serverless, I tend to create a simple Docker container so I can keep my languages and their additional requirements separate from each other.
+When working with Serverless, I tend to create a simple Docker container so I can keep my code and any additional requirements separate from each other.
 
 Before we focus on that though, we need to get some login details for AWS. Go to the AWS console and get an access key and secret. Then, create the following files and add it to there. All of these instructions assume you're in the AGE root directory:
 
@@ -41,10 +41,10 @@ serverless help
 For this first attempt, we'll start with testing the basic game AGE comes with. There are a series of tests related to this basic game. Let's run one now: 
 
 ```bash
-serverless invoke local --function age --path test/state/StartMenu/01.json
+serverless invoke local --function age --use_local_db 1 --purge_local_db 1 --path test/state/StartMenu/01.json
 ```
 
-This should result in:
+We'll worry about what these settings mean later. Note that the very first time you run this is may error due to a missing database. The second time, however it should result in:
 
 ```bash
 {
@@ -69,11 +69,11 @@ This should result in:
 }
 ```
 
-The result shows a JSON response that Alexa can understand. The important parts of this are the `outputSpeech` sections, so we can see what Alexa will do, and the `sessionAttributes` as this will tell us what **State** we're in and what variables we've stored for later.
+The result shows a JSON response that Alexa can understand. The important parts of this are the `outputSpeech` sections, so we can see what Alexa will do, and the `sessionAttributes` as this will tell us what **State** we're in and what variables (flags, inventory, etc) we've stored for later use.
 
 If it doesn't result in the above, check the errors response to see what's wrong. Serverless debugging is enabled by default in the `docker-compose.yaml` file by adding `SLS_DEBUG: "*"` to the environment variables.
 
-AGE automatically stores your session in a DynamoDB table is creates. If you don't have internet access, or you have the wrong AWS credentials, then this will either error or hang.
+AGE automatically stores your session in a DynamoDB table it creates. The above command will use a local DynamoDB docker container, which is great for testing. When you want to go live, you'll need to give your AWS credentials above the permission to create and update a DynamoDB table in AWS.
 
 When we're happy the tests are working (and there are another 30-odd that check various things regarding normal AGE usage), we can deploy our codebase to Lambda, ready for Alexa to use it.
 
@@ -83,9 +83,7 @@ serverless deploy
 
 Assuming your AWS credentials have the correct permissions, this should take about 30 seconds and then be done.
 
-You can now plug your Lambda command into Alexa and test it. We'll cover that later, although it's worth mentioning here that any `console.log()` commands or errors in your code will get logged to **CloudWatch logs**. 
-
-This makes it easy to debug as everything you want to track can easily be outputted automatically to there, whether you're calling your Lambda code through the Alexa test app during setup, or from an Amazon Echo.
+You can now plug your Lambda command into Alexa and test it. We'll cover that later, although it's worth mentioning here that any `console.log()` commands or errors in your code will get logged to **CloudWatch logs**. This makes it easy to debug as everything you want to track can easily be outputted automatically to there, whether you're calling your Lambda code through the Alexa test app during setup, or from an Amazon Echo.
 
 ## Configuration
 
@@ -106,7 +104,7 @@ custom:
     dynamodb_write_capacity: 1
 ```
 
-The `service` is the name of your game, although i'd stick to alphanumeric characters and the odd hyphen.
+The `service` is the name of your game, although i'd stick to alphanumeric characters and the odd hyphen. This is used for naming your the AWS Lambda function that Serverless will create.
 
 The next four options are all related to AWS. The `region` is where you want to host your Lambda application, and your DynamoDB. `dynamodb_table` is the name of your DynamoDB table.
 
@@ -123,7 +121,7 @@ These config files are what you'll use to create your game. Because some are qui
 - [rooms.yaml](documentation/config/rooms.yaml.md)
 - [start_menu.yaml](documentation/config/start_menu.yaml.md)
 
-With most plugins created, and in the main config directory, there is an additional `_helper.yaml` file. These are covered below in the config generator section. 
+With most plugins created, and in the main config directory, there is an additional `_helper.yaml` file. These are covered below in **The config generator** section. 
 
 ## Plugins
 
@@ -145,27 +143,33 @@ As briefly touched on before, there is some very simple method of testing built 
 serverless invoke local --function age --use_local_db 1 --purge_local_db 1 --path test/state/StartMenu/01.json
 ```
 
-Note the use of the flag `use_local_db` above. This uses a local version of DynamoDB instead of the live version, for development on the go and easy testing.
+Note the use of the flag `use_local_db` above. This uses a local version of DynamoDB instead of the live version for development on the go and easy testing.
 
-The above also uses `purge_local_db` to remove any previous test data. Use this when you want to use the local test scripts out of a valid order.
+The above also uses `purge_local_db` to remove any previous test data. Use this when you want to use the local test scripts out of a valid order. It can be useful to turn this off and run the game as if it was being played.
 
 ## The config generator
 
-We've covered how to set up the Lambda and build that, but when it comes time to create your Alexa application you'll be asked for three bits of information - the `intents.json`, some `Sample Utterances`, and the `slot values`.
+We've covered how to set up and build the Lambda, but when it comes time to create your Alexa application you'll be asked for a JSON file containing the invocation name for your app, a list of intents, and list of types (slot and values).
 
 Slot values are the variables a user will say to trigger an action, such `north` in `move north`, or `lamp` in `pickup lamp`.
 
-There is a file in `src/config` called `_helper.json`. This defines the slot values for your various slots. If you run the following command, you'll get three files added to the `./data` folder.
+There is a file in `src/config` called `_helper.json`. This defines the slot values for your various slots. You'll need to update this file with the various names and objects in your game.
+
+Each plugin will usually have it's own `_helper.json` files for describing what functionality the plugin provides. These you won't need to update as they're generic.
+
+The invocation name lives in a slightly different location, in `src/config/config.yaml` and is in the format:
+
+```yaml
+config:
+    invocation_name: age test
+    ...
+```
+
+There is an AGE plugin called `age-config` which ships with AGE that will create this JSON file for us. You can create the JSON file by running the following command:
 
 ```bash
 serverless age-config
 ``` 
 
-Of these three files, `intents.json` and `SampleUtterances.txt` can be simply copied direct into your Alexa setup. `SlotValues.txt`, on the other hand requires a bit more manual work. The text in square brackets is your slot name, and the values are listed below it. Each of these needs to be created during your Alexa application setup.
+This'll create the file `data/age-config.json`. You can import this JSON file directly into your Alexa application setup.
 
-For references, the rest of this data comes from the plugins, which (if required) each contain a `_helper.json` that defines a list of utterances, intents, and slot values.
-
-
-## TODO
-- Update serverless-shared-vars git because of work with invoke
-- Push back to NPM

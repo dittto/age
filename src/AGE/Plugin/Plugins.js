@@ -4,7 +4,7 @@ class Plugins {
     constructor(config) {
         this.config = config;
         this.plugins = {};
-        this.defaultPluginPath = './Default/';
+        this.defaultPluginPath = './';
         this.states = null;
         this.hasPreGetStates = false;
     }

@@ -1,10 +1,15 @@
 slot_values:
     command:
-        - jester
-        - yes
-        - no
+        jester:
+            - clown
+            - fool
+            - annoyance
+        yes:
+        no:
     credit:
-        - Nick Stacey
+        Nick Stacey:
+            - Nick
+            - Nick S
     item:
         - brass key
     object:
