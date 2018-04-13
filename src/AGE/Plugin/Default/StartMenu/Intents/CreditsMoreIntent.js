@@ -19,17 +19,41 @@ class CreditsMoreIntent {
         const repeat = credits.repeat;
         const unmatched = credits.unmatched;
         const lowerCasePeople = JSON.parse(JSON.stringify(people).toLowerCase());
-        const lowerCaseCredit = slots.Credit.value.toLowerCase();
+        const lowerCaseCredit = this.getSlotValue(slots.Credit);
 
         if (!!lowerCasePeople[lowerCaseCredit]) {
-            return new Response()
-                .setText(lowerCasePeople[lowerCaseCredit] + ' ' + suffix, this.config.getState())
+            const response = new Response()
+                .setText(lowerCasePeople[lowerCaseCredit].description + ' ' + suffix, this.config.getState())
                 .setRepeat(repeat);
+
+            if (lowerCasePeople[lowerCaseCredit].image) {
+                response.setImage(lowerCasePeople[lowerCaseCredit].image);
+            }
+
+            return response;
         }
 
         return new Response()
             .setText(unmatched, this.config.getState())
             .setRepeat(repeat);
+    }
+
+    getSlotValue(slotData) {
+        if (slotData && slotData.resolutions && slotData.resolutions.resolutionsPerAuthority) {
+            let result = null;
+            slotData.resolutions.resolutionsPerAuthority.forEach(res => {
+                if (res.values && res.values.length > 0) {
+                    result = res.values[0].value.name.toLowerCase();
+                }
+            });
+            return result;
+        }
+
+        if (slotData && slotData.value) {
+            return slotData.value.toLowerCase();
+        }
+
+        return '';
     }
 }
 

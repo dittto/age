@@ -8,10 +8,18 @@ custom:
     dynamodb_table: show_space_monsters
     dynamodb_read_capacity: 1
     dynamodb_write_capacity: 1
+    s3_assets_bucket: age-test-bucket
+
     use_local_db: ${opt:use_local_db, "0"}
     purge_local_db: ${opt:purge_local_db, "0"}
     local_db_host: ${opt:local_db_host, "age-db"}
     local_db_port: ${opt:local_db_port, "8000"}
+
+  s3Assets:
+    assets:
+      bucket: ${self:custom.shared.s3_assets_bucket}
+      isPublic: true
+      cacheTime: 300
 
 # Standard config setup. Change these if you know what they do and you want more freedom
 
@@ -19,6 +27,7 @@ frameworkVersion: ">=1.4.0 <2.0.0"
 
 plugins:
   - serverless-shared-vars
+  - serverless-s3-assets
   - age-config
 
 provider:
@@ -40,6 +49,11 @@ functions:
 
 resources:
   Resources:
+    S3BucketAssets:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.shared.s3_assets_bucket}
+
     ShowSpaceMonstersTable:
       Type: AWS::DynamoDB::Table
       Properties:

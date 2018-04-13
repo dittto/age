@@ -4,6 +4,7 @@ class Config {
     constructor(configPath) {
         this.config = {};
         this.currentState = '';
+        this.locale = '';
         this.oldState = null;
         this.attributes = {};
         this.__loadFiles(configPath);
@@ -46,8 +47,10 @@ class Config {
         return this.attributes[namespace] || {};
     }
 
-    getDefaultSameStateQuestion() {
-        return this.getBaseConfig('default_responses') ? this.getBaseConfig('default_responses').same_state_question : '';
+    getGameOverText() {
+        let text = this.getBaseConfig('default_responses') ? this.getBaseConfig('default_responses').game_over : '';
+
+        return text.replace(/:invocation_name/g, this.getBaseConfig('invocation_name'));
     }
 
     updateAttribute(namespace, values) {
@@ -58,7 +61,13 @@ class Config {
     }
 
     setLocale(locale) {
+        this.locale = locale;
+
         return this;
+    }
+
+    getLocale() {
+        return this.locale;
     }
 
     getText() {

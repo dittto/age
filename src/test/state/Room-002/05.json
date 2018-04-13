@@ -1,12 +1,15 @@
 {
+  "__comment": "Take the door to the north",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
     "attributes": {
-      "STATE": "002-jester-1",
+      "STATE": "002",
       "flags": {
         "world": {
-          "inventory_brass_key": 0
+          "inventory_brass_key": 0,
+          "second_room_jester_feelings": 3
         },
         "state": {
           "001": {
@@ -28,11 +31,11 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "SayIntent",
+      "name": "MoveIntent",
       "slots": {
-        "Command": {
-          "name": "Command",
-          "value": "wibble"
+        "Direction": {
+          "name": "Direction",
+          "value": "north"
         }
       }
     },

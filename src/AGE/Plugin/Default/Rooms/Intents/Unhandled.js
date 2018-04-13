@@ -32,6 +32,10 @@ class Unhandled {
                 response.setText(defaultResponses.unhandled.description, state);
             }
 
+            if (defaultResponses.unhandled.image) {
+                response.setImage(defaultResponses.unhandled.image);
+            }
+
             if (defaultResponses.unhandled.repeat) {
                 response.setRepeat(defaultResponses.unhandled.repeat);
             }
@@ -41,6 +45,10 @@ class Unhandled {
         if (!!data.unhandled) {
             if (data.unhandled.description) {
                 response.setText(data.unhandled.description, state);
+            }
+
+            if (data.unhandled.image) {
+                response.setText(data.unhandled.image);
             }
 
             if (data.unhandled.repeat) {

@@ -1,4 +1,6 @@
 {
+  "__comment": "Don't continue loading a game and reset",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -32,7 +34,7 @@
       "slots": {
         "ContinueCommand": {
           "name": "ContinueCommand",
-          "value": "yes"
+          "value": "restart game"
         }
       }
     },

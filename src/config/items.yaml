@@ -2,3 +2,4 @@ items:
     brass_key:
         name: Brass Key
         description: An ancient-looking brass key. It looks like it would fit the door in this room.
+        image: items/brass_key.png

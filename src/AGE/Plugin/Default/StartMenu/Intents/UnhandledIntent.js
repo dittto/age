@@ -15,9 +15,15 @@ class UnhandledIntent {
     process (slots) {
         const unhandledConfig = this.config.get('start_menu').unhandled;
 
-        return new Response()
+        const response = new Response()
             .setText(unhandledConfig.description, this.config.getState())
             .setRepeat(unhandledConfig.repeat);
+
+        if (unhandledConfig.image) {
+            response.setImage(unhandledConfig.image);
+        }
+
+        return response;
     }
 }
 

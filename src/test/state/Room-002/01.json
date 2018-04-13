@@ -1,4 +1,6 @@
 {
+  "__comment": "Inspect the jester",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -28,11 +30,11 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "UseIntent",
+      "name": "InspectIntent",
       "slots": {
         "ItemOrObjectA": {
           "name": "ItemOrObjectA",
-          "value": "west door"
+          "value": "jester"
         }
       }
     },

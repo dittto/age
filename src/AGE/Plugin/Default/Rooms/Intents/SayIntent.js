@@ -13,7 +13,7 @@ class SayIntent extends BaseIntent {
     }
 
     processSlots (rooms, slots) {
-        const command = slots.Command && slots.Command.value ? slots.Command.value.toLowerCase() : '';
+        const command = this.getSlotValue(slots.Command);
 
         return {'command': command};
     }

@@ -173,3 +173,33 @@ serverless age-config
 
 This'll create the file `data/age-config.json`. You can import this JSON file directly into your Alexa application setup.
 
+
+
+# TODO
+
+Test s3 image integration into rooms
+- room general description
+- room specific descriptions
+- objects
+- items
+- load_game.image
+- actions
+
+Test renaming intents.name to intents.intent
+
+
+
+
+Follow steps in i18n.yaml
+
+Check room slot values can be overridden by config slot values
+
+Check utterances can be overridden by helper
+
+Test uploads can be used for audio
+
+Finish docs
+
+Create better README to show how to use and move most info here to elsewhere
+
+Add in command-help to get list of all valid commands, or room-specific commands

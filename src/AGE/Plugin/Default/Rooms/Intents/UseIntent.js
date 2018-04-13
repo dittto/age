@@ -14,11 +14,14 @@ class UseIntent extends BaseIntent {
 
     processSlots (rooms, slots) {
         let itemOrObjects = [];
-        if (slots.ItemOrObjectA && slots.ItemOrObjectA.value) {
-            itemOrObjects.push(slots.ItemOrObjectA.value);
+        const itemA = this.getSlotValue(slots.ItemOrObjectA);
+        if (itemA) {
+            itemOrObjects.push(itemA);
         }
-        if (slots.ItemOrObjectB && slots.ItemOrObjectB.value) {
-            itemOrObjects.push(slots.ItemOrObjectB.value);
+
+        const itemB = this.getSlotValue(slots.ItemOrObjectB);
+        if (itemB) {
+            itemOrObjects.push(itemB);
         }
 
         return {'item_or_object': rooms.getItemsOrObjectsByName(itemOrObjects)};
@@ -26,11 +29,14 @@ class UseIntent extends BaseIntent {
 
     processUnhandledError(originalSlots, processedSlots, response) {
         let itemOrObjects = [];
-        if (originalSlots.ItemOrObjectA && originalSlots.ItemOrObjectA.value) {
-            itemOrObjects.push(originalSlots.ItemOrObjectA.value);
+        const itemA = this.getSlotValue(originalSlots.ItemOrObjectA);
+        if (itemA) {
+            itemOrObjects.push(itemA);
         }
-        if (originalSlots.ItemOrObjectB && originalSlots.ItemOrObjectB.value) {
-            itemOrObjects.push(originalSlots.ItemOrObjectB.value);
+
+        const itemB = this.getSlotValue(originalSlots.ItemOrObjectB);
+        if (itemB) {
+            itemOrObjects.push(itemB);
         }
 
         const defaultResponses = this.config.getBaseConfig('default_responses').use || {};

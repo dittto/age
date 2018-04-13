@@ -1,4 +1,6 @@
 {
+  "__comment": "Inspect brass key",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",

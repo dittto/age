@@ -1,4 +1,6 @@
 {
+  "__comment": "The help text from the credits",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",

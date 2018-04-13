@@ -1,12 +1,15 @@
 {
+  "__comment": "Win the game by pulling the switch",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
     "attributes": {
-      "STATE": "001",
+      "STATE": "003",
       "flags": {
         "world": {
-          "inventory_brass_key": 0
+          "inventory_brass_key": 0,
+          "second_room_jester_feelings": 3
         },
         "state": {
           "001": {
@@ -28,11 +31,11 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "ContinueIntent",
+      "name": "PullIntent",
       "slots": {
-        "ContinueCommand": {
-          "name": "ContinueCommand",
-          "value": "no"
+        "Object": {
+          "name": "Object",
+          "value": "switch"
         }
       }
     },

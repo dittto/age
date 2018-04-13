@@ -1,4 +1,6 @@
 {
+  "__comment": "Move through door now that it's unlocked",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -28,7 +30,13 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "RepeatIntent"
+      "name": "MoveIntent",
+      "slots": {
+        "Direction": {
+          "name": "Direction",
+          "value": "east"
+        }
+      }
     },
     "locale": "en-GB",
     "timestamp": "2017-10-04T14:29:34Z"

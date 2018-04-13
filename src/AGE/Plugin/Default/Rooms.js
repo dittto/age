@@ -5,6 +5,7 @@ const Room = require('./Rooms/Room');
 
 const CheckIntent = require('./Rooms/Checks/CheckIntent');
 const DescriptionAction = require('./Rooms/Actions/DescriptionAction');
+const ImageAction = require('./Rooms/Actions/ImageAction');
 const LinkAction = require('./Rooms/Actions/LinkAction');
 const Intents = require('./Rooms/Intents');
 
@@ -55,8 +56,9 @@ class Rooms {
 
         this.addRoomCheck(new CheckIntent(this.config, this.plugins));
 
-        this.addRoomAction(new LinkAction(this.config, this.plugins));
         this.addRoomAction(new DescriptionAction(this.config, this.plugins));
+        this.addRoomAction(new ImageAction(this.config, this.plugins));
+        this.addRoomAction(new LinkAction(this.config, this.plugins));
 
         this.addGenericIntent(new Intents.Continue(this.config, this.plugins));
         this.addGenericIntent(new Intents.Help(this.config, this.plugins));
@@ -78,13 +80,12 @@ class Rooms {
             links.forEach(link => {
                 const intents = link.checks && link.checks.intents || [];
                 intents.forEach(intent => {
-
-                    if (typeof Intents[intent.name] !== 'undefined') {
-                        stateIntents[intent.name + "Intent"] = new Intents[intent.name](this.config, this.plugins);
+                    if (typeof Intents[intent.intent] !== 'undefined') {
+                        stateIntents[intent.intent + "Intent"] = new Intents[intent.intent](this.config, this.plugins);
                     }
 
-                    if (typeof stateIntents[intent.name + "Intent"] === 'undefined') {
-                        throw Error('Cannot find intent "' + intent.name + '"');
+                    if (typeof stateIntents[intent.intent + "Intent"] === 'undefined') {
+                        throw Error('Cannot find intent "' + intent.intent + '"');
                     }
                 });
             });
@@ -224,6 +225,16 @@ class Rooms {
             response = this.runActions(response, room.getForceLinkActions());
         }
 
+        if (!response.getIsQuestion()) {
+            // trigger twice so state isn't flagged as changed
+            this.config.setState('');
+            this.config.setState('');
+            const rooms = this.plugins.get(Rooms.name());
+            rooms.reset();
+
+            response.setText(this.config.getGameOverText());
+        }
+
         return response;
     }
 
@@ -260,8 +271,6 @@ class Rooms {
             }
             response = this.roomActions[action].run(response, actions[action]);
         });
-
-        response.setSameStateQuestion(this.config.getDefaultSameStateQuestion());
 
         return response;
     }

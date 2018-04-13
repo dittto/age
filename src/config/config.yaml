@@ -4,9 +4,11 @@ config:
     default_responses:
         repeat: If you want to hear that again, say "repeat".
 
+        game_over: To start a new game, say "Alexa, start :invocation_name".
+
         load_game:
-            description: Welcome to back to AGE test. Would you like to continue where you left off? "yes" or "no".
-            repeat: You have 8 seconds to comply. "yes" or "no".
+            description: Welcome back to AGE test. Would you like to continue where you left off? "continue game" or "restart game".
+            repeat: You have 8 seconds to comply. "continue game" or "restart game".
 
         unhandled:
             description: I'm not sure what you mean.

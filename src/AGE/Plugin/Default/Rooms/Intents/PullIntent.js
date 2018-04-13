@@ -13,7 +13,7 @@ class PullIntent extends BaseIntent {
     }
 
     processSlots (rooms, slots) {
-        const obj = slots.Object && slots.Object.value ? slots.Object.value.toLowerCase() : '';
+        const obj = this.getSlotValue(slots.Object);
 
         return {'object': rooms.getObjectsByName([obj])};
     }

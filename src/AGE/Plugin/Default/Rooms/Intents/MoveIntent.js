@@ -13,7 +13,7 @@ class MoveIntent extends BaseIntent {
     }
 
     processSlots (rooms, slots) {
-        const direction = slots.Direction && slots.Direction.value ? slots.Direction.value.toLowerCase() : '';
+        const direction = this.getSlotValue(slots.Direction);
 
         return {'direction': direction};
     }

@@ -15,10 +15,13 @@ class InspectIntent extends BaseIntent {
 
     processSlots (rooms, slots) {
         const state = this.getConfig().getState();
-        const itemOrObjectName = slots.ItemOrObjectA.value.toLowerCase();
+        const itemOrObjectName = this.getSlotValue(slots.ItemOrObjectA);
         const inspectorDefaults = this.getConfig().getBaseConfig('default_responses').inspector;
 
         let response = new Response();
+        if (!!inspectorDefaults && !!inspectorDefaults.image) {
+            response.setImage(inspectorDefaults.image);
+        }
         if (!!inspectorDefaults && !!inspectorDefaults.repeat) {
             response.setRepeat(inspectorDefaults.repeat);
         }
@@ -26,8 +29,11 @@ class InspectIntent extends BaseIntent {
         const matchedItems = rooms.getItemsByName(itemOrObjectName);
         if (Object.keys(matchedItems).length > 0) {
             response = response.setText(matchedItems[Object.keys(matchedItems)[0]].description, state);
+            if (matchedItems[Object.keys(matchedItems)[0]].image) {
+                response.setImage(matchedItems[Object.keys(matchedItems)[0]].image);
+            }
             if (matchedItems[Object.keys(matchedItems)[0]].repeat) {
-                response.setText(matchedItems[Object.keys(matchedItems)[0]].repeat, state);
+                response.setRepeat(matchedItems[Object.keys(matchedItems)[0]].repeat);
             }
             this.setResponse(response);
 
@@ -37,8 +43,11 @@ class InspectIntent extends BaseIntent {
         const matchedObjects = rooms.getObjectsByName(itemOrObjectName);
         if (Object.keys(matchedObjects).length > 0) {
             response = response.setText(matchedObjects[Object.keys(matchedObjects)[0]].description, state);
+            if (matchedObjects[Object.keys(matchedObjects)[0]].image) {
+                response.setImage(matchedObjects[Object.keys(matchedObjects)[0]].image);
+            }
             if (matchedObjects[Object.keys(matchedObjects)[0]].repeat) {
-                response.setText(matchedObjects[Object.keys(matchedObjects)[0]].repeat, state);
+                response.setRepeat(matchedObjects[Object.keys(matchedObjects)[0]].repeat);
             }
             this.setResponse(response);
 
@@ -47,15 +56,23 @@ class InspectIntent extends BaseIntent {
 
         const items = rooms.getRoom().getRoomItems();
         const additionalItems = this.additionalItems;
+        let isSet = false;
         Object.keys(additionalItems).forEach(itemName => {
             if (itemName.toLowerCase() === itemOrObjectName) {
                 response = response.setText(items[itemName].description, state);
+                if (items[itemName].image) {
+                    response.setImage(items[itemName].image);
+                }
                 if (items[itemName].repeat) {
-                    response.setText(items[itemName].repeat, state);
+                    response.setRepeat(items[itemName].repeat);
                 }
                 this.setResponse(response);
+                isSet = true;
             }
         });
+        if (isSet) {
+            return;
+        }
 
         this.setResponse(response.setText(inspectorDefaults.failed, state));
     }

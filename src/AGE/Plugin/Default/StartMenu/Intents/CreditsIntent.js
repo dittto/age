@@ -16,9 +16,15 @@ class CreditsIntent {
         this.config.setState('Credits');
         const credits = this.config.get('start_menu').credits;
 
-        return new Response()
+        const response = new Response()
             .setText(credits.description, this.config.getState())
             .setRepeat(credits.repeat);
+
+        if (credits.image) {
+            response.setImage(credits.image);
+        }
+
+        return response;
     }
 }
 

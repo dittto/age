@@ -1,4 +1,6 @@
 {
+  "__comment": "Use door now that it's unlocked",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -7,11 +9,14 @@
       "flags": {
         "world": {
           "inventory_brass_key": 0
+        },
+        "state": {
+          "001": {
+            "open_door": 0
+          }
         }
       },
-      "inventory": {
-        "brass_key": 1
-      }
+      "inventory": {}
     },
     "user": {
       "userId": "amzn1.ask.account.[unique-value-here]"
@@ -30,10 +35,6 @@
         "ItemOrObjectA": {
           "name": "ItemOrObjectA",
           "value": "door"
-        },
-        "ItemOrObjectB": {
-          "name": "ItemOrObjectB",
-          "value": "brass key"
         }
       }
     },

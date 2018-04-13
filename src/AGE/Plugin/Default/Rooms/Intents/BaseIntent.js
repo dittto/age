@@ -89,6 +89,24 @@ class BaseIntent {
     postRunActions(response) {
         return response;
     }
+
+    getSlotValue(slotData) {
+        if (slotData && slotData.resolutions && slotData.resolutions.resolutionsPerAuthority) {
+            let result = null;
+            slotData.resolutions.resolutionsPerAuthority.forEach(res => {
+                if (res.values && res.values.length > 0) {
+                    result = res.values[0].value.name.toLowerCase();
+                }
+            });
+            return result;
+        }
+
+        if (slotData && slotData.value) {
+            return slotData.value.toLowerCase();
+        }
+
+        return '';
+    }
 }
 
 module.exports = BaseIntent;

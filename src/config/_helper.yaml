@@ -18,3 +18,7 @@ slot_values:
         - south door
         - north door
         - switch
+
+utterances:
+    HelpIntent:
+        - "Help me now"

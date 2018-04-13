@@ -35,7 +35,7 @@ module.exports.age = function (event, context, callback) {
         .buildStates();
 
     // register handlers
-    const main = new AGE.Main(Alexa, config, plugins);
+    const main = new AGE.Main(Alexa, config, plugins, 'https://s3-' + SharedVars.region + '.amazonaws.com/' + SharedVars.s3_assets_bucket + '/');
     main.getHandlers().forEach(function (handler) {
         alexaHandler.registerHandlers(handler);
     });

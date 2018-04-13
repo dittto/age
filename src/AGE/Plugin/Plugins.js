@@ -73,8 +73,9 @@ class Plugins {
             results[intentName] = function () {
                 const alexaContext = this;
 
-                self.config.setState(alexaContext.handler.state);
-                self.config.setAttributes(alexaContext.attributes);
+                self.config.setState(alexaContext.handler.state)
+                    .setAttributes(alexaContext.attributes)
+                    .setLocale(alexaContext.event.request.locale);
 
                 const slots = alexaContext.event.request.intent && alexaContext.event.request.intent.slots ? alexaContext.event.request.intent.slots : {};
 

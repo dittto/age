@@ -1,4 +1,6 @@
 {
+  "__comment": "Repeat the room description",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",

@@ -13,7 +13,7 @@ class PickUpIntent extends BaseIntent {
     }
 
     processSlots (rooms, slots) {
-        const itemName = slots.ItemOrObjectA.value;
+        const itemName = this.getSlotValue(slots.ItemOrObjectA);
         const state = this.getConfig().getState();
 
         // item has to be in the current room
@@ -46,8 +46,12 @@ class PickUpIntent extends BaseIntent {
             response.setText(failed.description.replace(':itemName', itemName), state);
         }
 
+        if (failed && failed.image) {
+            response.setText(failed.image);
+        }
+
         if (failed && failed.repeat) {
-            response.setRepeat(failed.repeat.replace(':itemName', itemName), state);
+            response.setRepeat(failed.repeat.replace(':itemName', itemName));
         }
 
         return response;
@@ -62,8 +66,12 @@ class PickUpIntent extends BaseIntent {
             response.setText(already.description.replace(':itemName', itemName), state);
         }
 
+        if (already && already.image) {
+            response.setImage(already.image);
+        }
+
         if (already && already.repeat) {
-            response.setRepeat(already.repeat.replace(':itemName', itemName), state);
+            response.setRepeat(already.repeat.replace(':itemName', itemName));
         }
 
         return response;

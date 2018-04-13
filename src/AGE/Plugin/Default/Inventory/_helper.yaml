@@ -1,6 +1,7 @@
 utterances:
     PickUpIntent:
         - "Pick up {ItemOrObjectA}"
+        - "Take {ItemOrObjectA}"
 
 intents:
     PickUpIntent:

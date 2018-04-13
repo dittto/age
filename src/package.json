@@ -6,9 +6,10 @@
   "main": "handler.js",
   "dependencies": {
     "age-config": "^2.0.0",
-    "alexa-sdk": "^1.0.0",
+    "alexa-sdk": "^1.0.25",
     "deepmerge": "^1.5.2",
     "fs": "0.0.1-security",
+    "serverless-s3-assets": "^1.0.1",
     "serverless-shared-vars": "^1.1.1",
     "yamljs": "^0.3.0"
   },

@@ -3,3 +3,5 @@ ideas
 src/.serverless
 src/node_modules
 src/.shared-vars.js
+age-config
+age-insult-fighting

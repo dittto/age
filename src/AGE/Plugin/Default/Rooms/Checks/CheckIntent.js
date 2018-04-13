@@ -31,7 +31,7 @@ class CheckIntent {
             const intentData = linkData[i];
 
             Object.keys(intentData).forEach(fieldName => {
-                if (fieldName === 'name') {
+                if (fieldName === 'intent') {
                     if (intentData[fieldName] !== intentName) {
                         isValid = false;
                     }

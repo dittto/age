@@ -6,7 +6,7 @@ class Response {
         this.private = {
             autoStateRedirect: '',
             isQuestion: true,
-            sameStateQuestion: '',
+            image: null,
             text: '',
             textByState: {},
             ignoreTextForState: [],
@@ -46,11 +46,6 @@ class Response {
             }
         });
 
-        // removed to see if it works better without
-        // if (Object.keys(this.private.textByState).length === 1 && this.private.isQuestion) {
-        //     text += this.getSameStateQuestion();
-        // }
-
         return text;
     }
 
@@ -76,18 +71,18 @@ class Response {
         this.private.ignoreTextForState.push(state);
     }
 
-    setSameStateQuestion(sameStateQuestion) {
-        this.private.sameStateQuestion = sameStateQuestion;
+    setImage(imageName) {
+        this.private.image = imageName;
 
         return this;
     }
 
-    getSameStateQuestion() {
-        return this.private.sameStateQuestion;
+    getImage() {
+        return this.private.image;
     }
 
-    hasSameStateQuestion() {
-        return this.private.sameStateQuestion !== null;
+    hasImage() {
+        return this.private.image !== null;
     }
 }
 

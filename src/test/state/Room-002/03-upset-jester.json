@@ -1,13 +1,14 @@
 {
+  "__comment": "Say yes to Jester's question",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
     "attributes": {
-      "STATE": "002",
+      "STATE": "002-jester-1",
       "flags": {
         "world": {
-          "inventory_brass_key": 0,
-          "second_room_jester_feelings": 3
+          "inventory_brass_key": 0
         },
         "state": {
           "001": {
@@ -29,7 +30,13 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "RepeatIntent"
+      "name": "SayIntent",
+      "slots": {
+        "Command": {
+          "name": "Command",
+          "value": "No"
+        }
+      }
     },
     "locale": "en-GB",
     "timestamp": "2017-10-04T14:29:34Z"

@@ -1,0 +1,38 @@
+i18n:
+    en-GB:
+        slot_values:
+            direction:
+                north: up there
+                south: down there
+            item:
+                "brass key": "green key"
+            command:
+                "fool": "idiot"
+
+        utterances:
+            "Start a new game": "Get going"
+
+# translate invocation name
+
+
+# move translation code ot own js file
+
+# test utterance override
+
+
+
+
+
+# change age-config to being on multiple pages
+
+# rooms.yaml translations
+
+# items.yaml translations
+
+# config.yaml translations
+
+# start_menu.yaml translations
+
+
+# slot values translations
+# utterances translations

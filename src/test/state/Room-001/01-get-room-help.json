@@ -1,4 +1,6 @@
 {
+  "__comment": "Get help with room",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -28,13 +30,7 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "SayIntent",
-      "slots": {
-        "command": {
-          "name": "command",
-          "value": "Desist"
-        }
-      }
+      "name": "HelpIntent"
     },
     "locale": "en-GB",
     "timestamp": "2017-10-04T14:29:34Z"

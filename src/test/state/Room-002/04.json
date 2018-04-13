@@ -1,4 +1,6 @@
 {
+  "__comment": "Look around room again after speaking to Jester",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -6,7 +8,8 @@
       "STATE": "002",
       "flags": {
         "world": {
-          "inventory_brass_key": 0
+          "inventory_brass_key": 0,
+          "second_room_jester_feelings": 3
         },
         "state": {
           "001": {
@@ -28,13 +31,7 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "SayIntent",
-      "slots": {
-        "Command": {
-          "name": "Command",
-          "value": "jester"
-        }
-      }
+      "name": "RepeatIntent"
     },
     "locale": "en-GB",
     "timestamp": "2017-10-04T14:29:34Z"

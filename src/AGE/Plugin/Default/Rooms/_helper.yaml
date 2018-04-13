@@ -1,6 +1,8 @@
 utterances:
     ContinueIntent:
         - "{ContinueCommand}"
+    GameOverIntent:
+        - "Start a new game"
     HelpIntent:
         - "Help me"
         - "Help"
@@ -22,10 +24,12 @@ utterances:
         - "Use {ItemOrObjectA}"
         - "Use {ItemOrObjectA} with {ItemOrObjectB}"
         - "Use {ItemOrObjectA} on {ItemOrObjectB}"
+        - "Use {ItemOrObjectA} in {ItemOrObjectB}"
 
 intents:
     ContinueIntent:
         ContinueCommand: continuecommand
+    GameOverIntent: {}
     HelpIntent: {}
     MoveIntent:
         Direction: direction
@@ -42,8 +46,8 @@ intents:
 
 slot_values:
     continuecommand:
-        - yes
-        - no
+        - continue game
+        - restart game
     direction:
         - north
         - south

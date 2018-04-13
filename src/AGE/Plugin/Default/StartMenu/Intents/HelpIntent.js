@@ -20,9 +20,15 @@ class HelpIntent {
             state = 'MainMenu';
         }
 
-        return new Response()
+        const response = new Response()
             .setText(help[state].description, this.config.getState())
             .setRepeat(help[state].repeat);
+
+        if (help[state].image) {
+            response.setImage(help[state].image);
+        }
+
+        return response;
     }
 }
 

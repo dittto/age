@@ -1,4 +1,6 @@
 {
+  "__comment": "Speak to the Jester",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -28,11 +30,11 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "UseIntent",
+      "name": "SayIntent",
       "slots": {
-        "ItemOrObjectA": {
-          "name": "ItemOrObjectA",
-          "value": "south door"
+        "Command": {
+          "name": "Command",
+          "value": "jester"
         }
       }
     },

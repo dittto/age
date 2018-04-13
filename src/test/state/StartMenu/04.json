@@ -1,4 +1,6 @@
 {
+  "__comment": "Return from credits section to main menu",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -17,13 +19,7 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "CreditsMoreIntent",
-      "slots": {
-        "Credit": {
-          "name": "Credit",
-          "value": "Jim bob"
-        }
-      }
+      "name": "MainMenuIntent"
     },
     "locale": "en-GB",
     "timestamp": "2017-10-04T14:29:34Z"

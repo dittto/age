@@ -1,17 +1,26 @@
 default_room: "001"
 
+translated_fields:
+    - description
+    - repeat
+    - objects.*.name
+    - undefined
+
 rooms:
     "001":
         descriptions:
             -
                 description: You're in a room. There's a table with a key on it and a locked door to the east.
+                image: start_room/with_key.png
                 repeat: Get to the choppa
             -
                 has_flags: [inventory_brass_key]
                 description: You're in a room. There's a table and a locked door to the east.
+                image: start_room/locked.png
             -
                 has_flags: [inventory_brass_key, open_door]
                 description: You're in a room. There's a table and an unlocked door to the east.
+                image: start_room/unlocked.png
         repeat: Hurry, or we're through
 #        help:
 #            description: You can dance the fandango
@@ -20,22 +29,23 @@ rooms:
 #            description: It's rude to mumble
 #            repeat: Say "help" to get some help
         load_game:
-            description: Welcome to back to AGE test. You're still in the first room. Would you like to continue where you left off? "yes" or "no".
+            description: Welcome back to AGE test. You're still in the first room. Would you like to continue where you left off? "continue game" or "restart game".
         items:
             - brass_key
         objects:
             door:
                 name: Door
                 description: The door looks ancient and solid, closer to stone than wood. You can see a brass keyhole by the handle.
+                image: start_room/door_up_close.png
         links:
             -
                 checks:
                     intents:
                         -
-                            name: Use
+                            intent: Use
                             item_or_object: door
                         -
-                            name: Move
+                            intent: Move
                             direction: east
                     has_flags: [open_door]
                 actions:
@@ -44,7 +54,7 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Use
+                            intent: Use
                             item_or_object: [brass_key, door]
                     has_flags: [inventory_brass_key]
                 actions:
@@ -55,18 +65,19 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Use
+                            intent: Use
                             item_or_object: door
                         -
-                            name: Move
+                            intent: Move
                             direction: east
                 actions:
                     description: The door is locked and will not budge.
+                    image: start_room/locked.png
             -
                 checks:
                     intents:
                         -
-                            name: PickUp
+                            intent: PickUp
                             item_or_object: brass_key
                     has_flags: [inventory_brass_key]
                 actions:
@@ -75,13 +86,14 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: PickUp
+                            intent: PickUp
                             item_or_object: brass_key
                     has_flags:
                         inventory_brass_key:
                             condition: not_set
                 actions:
                     description: You walk over to the table and take the brass key.
+                    image: start_room/locked.png
                     add_to_inventory: [brass_key]
 
 
@@ -101,6 +113,7 @@ rooms:
                         condition: greater_than
                         value: 0
                 description: You're in a courtyard. The sun is setting. A jester is smiling at you. There is a door to the west, one to the south, and another to the north.
+        image: room_2/courtyard.png
         objects:
             west_door:
                 name: west door
@@ -119,10 +132,10 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Use
+                            intent: Use
                             item_or_object: west_door
                         -
-                            name: Move
+                            intent: Move
                             direction: west
                 actions:
                     link: "001"
@@ -130,10 +143,10 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Use
+                            intent: Use
                             item_or_object: south_door
                         -
-                            name: Move
+                            intent: Move
                             direction: south
                 actions:
                     link: "004"
@@ -141,10 +154,10 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Use
+                            intent: Use
                             item_or_object: north_door
                         -
-                            name: Move
+                            intent: Move
                             direction: north
                 actions:
                     link: "003"
@@ -152,7 +165,7 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Say
+                            intent: Say
                             command: jester
                 actions:
                     link: "002-jester-1"
@@ -179,7 +192,7 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Say
+                            intent: Say
                             command: yes
                 actions:
                     link: "002-jester-2"
@@ -187,7 +200,7 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Say
+                            intent: Say
                             command: no
                 actions:
                     create_world_flags:
@@ -197,6 +210,7 @@ rooms:
 
     "002-jester-2":
         description: What's black with orange and red all over? The fiery death that awaits to the south... I'm not a very good jester am I?
+        image: jester/joke-1.png
         force_link:
             create_world_flags:
                 second_room_jester_feelings:
@@ -225,7 +239,7 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Pull
+                            intent: Pull
                             object: switch
                 actions:
                     link: "005"
@@ -233,7 +247,7 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Push
+                            intent: Push
                             object: switch
                 actions:
                     link: "005"
@@ -241,10 +255,18 @@ rooms:
                 checks:
                     intents:
                         -
-                            name: Use
+                            intent: Use
+                            object: switch
+                actions:
+                    link: "005"
+            -
+                checks:
+                    intents:
+                        -
+                            intent: Use
                             item_or_object: door
                         -
-                            name: Move
+                            intent: Move
                             direction: south
                 actions:
                     link: "002"

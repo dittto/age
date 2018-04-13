@@ -1,9 +1,11 @@
 {
+  "__comment": "Starts new game from main menu",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
     "attributes": {
-      "STATE": "Credits"
+      "STATE": "MainMenu"
     },
     "user": {
       "userId": "amzn1.ask.account.[unique-value-here]"

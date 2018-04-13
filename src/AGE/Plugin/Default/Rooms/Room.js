@@ -26,6 +26,10 @@ class Room {
             response.setText(this.data.description, this.getState());
         }
 
+        if (this.data.image) {
+            response.setImage(this.data.image);
+        }
+
         if (this.config.getBaseConfig('default_responses').room_repeat) {
             response.setRepeat(this.config.getBaseConfig('default_responses').room_repeat);
         }
@@ -41,6 +45,10 @@ class Room {
                 if (this.__isValidDescription(descriptionData)) {
                     if (descriptionData.description) {
                         response.setText(descriptionData.description, this.getState());
+                    }
+
+                    if (descriptionData.image) {
+                        response.setImage(descriptionData.image);
                     }
 
                     if (descriptionData.repeat) {
@@ -121,7 +129,7 @@ class Room {
         let isValid = true;
 
         Object.keys(data).forEach(key => {
-            if (key === 'description' || key === 'repeat') {
+            if (key === 'description' || key === 'image' || key === 'repeat') {
                 return;
             }
 

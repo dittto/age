@@ -22,7 +22,7 @@ class ContinueIntent {
         const room = rooms.getRoom();
         const state = room.getState();
 
-        if (slots.ContinueCommand.value === 'yes') {
+        if (slots.ContinueCommand.value.toLowerCase() === 'continue game') {
             this.config.setState('fake_state');
             this.config.setState(state);
         } else {

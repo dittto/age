@@ -23,6 +23,10 @@ class HelpIntent extends BaseIntent {
                 response.setText(defaultResponses.room.help.description, room.getState());
             }
 
+            if (defaultResponses.room.help.image) {
+                response.setImage(defaultResponses.room.help.image);
+            }
+
             if (defaultResponses.room.help.repeat) {
                 response.setRepeat(defaultResponses.room.help.repeat);
             }
@@ -32,6 +36,10 @@ class HelpIntent extends BaseIntent {
         if (!!data.help) {
             if (data.help.description) {
                 response.setText(data.help.description, room.getState());
+            }
+
+            if (data.help.image) {
+                response.setImage(data.help.image);
             }
 
             if (data.help.repeat) {

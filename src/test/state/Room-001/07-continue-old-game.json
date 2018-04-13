@@ -1,4 +1,6 @@
 {
+  "__comment": "Continues a game after reloading it",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -28,11 +30,11 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "MoveIntent",
+      "name": "ContinueIntent",
       "slots": {
-        "direction": {
-          "name": "direction",
-          "value": "Hubwards"
+        "ContinueCommand": {
+          "name": "ContinueCommand",
+          "value": "continue game"
         }
       }
     },

@@ -1,12 +1,11 @@
 {
-  "__comment": "Attempt to use door without key",
+  "__comment": "The help text from the main menu",
 
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
     "attributes": {
-      "STATE": "001",
-      "flags": {}
+      "STATE": "MainMenu"
     },
     "user": {
       "userId": "amzn1.ask.account.[unique-value-here]"
@@ -20,13 +19,7 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "UseIntent",
-      "slots": {
-        "ItemOrObjectA": {
-          "name": "ItemOrObjectA",
-          "value": "door"
-        }
-      }
+      "name": "HelpIntent"
     },
     "locale": "en-GB",
     "timestamp": "2017-10-04T14:29:34Z"

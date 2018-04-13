@@ -1,4 +1,6 @@
 {
+  "__comment": "Describe room now the brass key has been taken",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -25,13 +27,7 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "PickUpIntent",
-      "slots": {
-        "ItemOrObjectA": {
-          "name": "ItemOrObjectA",
-          "value": "brass key"
-        }
-      }
+      "name": "RepeatIntent"
     },
     "locale": "en-GB",
     "timestamp": "2017-10-04T14:29:34Z"

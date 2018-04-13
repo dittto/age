@@ -27,6 +27,10 @@ class InitialLaunchIntent extends BaseIntent {
                 response.setText(defaultResponses.load_game.description, room.getState());
             }
 
+            if (defaultResponses.load_game.image) {
+                response.setImage(defaultResponses.load_game.image);
+            }
+
             if (defaultResponses.load_game.repeat) {
                 response.setRepeat(defaultResponses.load_game.repeat);
             }
@@ -36,6 +40,10 @@ class InitialLaunchIntent extends BaseIntent {
         if (!!data.load_game) {
             if (data.load_game.description) {
                 response.setText(data.load_game.description, room.getState());
+            }
+
+            if (data.load_game.image) {
+                response.setImage(data.load_game.image);
             }
 
             if (data.load_game.repeat) {

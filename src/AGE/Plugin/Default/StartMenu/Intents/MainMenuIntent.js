@@ -17,9 +17,15 @@ class MainMenuIntent {
 
         this.config.setState('MainMenu');
 
-        return new Response()
+        const response = new Response()
             .setText(mainMenuConfig.description, this.config.getState())
             .setRepeat(mainMenuConfig.repeat);
+
+        if (mainMenuConfig.image) {
+            response.setImage(mainMenuConfig.image);
+        }
+
+        return response;
     }
 }
 

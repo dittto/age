@@ -1,13 +1,14 @@
 {
+  "__comment": "Reloads old game where you've already got the key",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
     "attributes": {
-      "STATE": "003",
+      "STATE": "001",
       "flags": {
         "world": {
-          "inventory_brass_key": 0,
-          "second_room_jester_feelings": 3
+          "inventory_brass_key": 0
         },
         "state": {
           "001": {
@@ -26,17 +27,8 @@
   },
   "version": "1.0",
   "request": {
-    "type": "IntentRequest",
+    "type": "LaunchRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
-    "intent": {
-      "name": "PushIntent",
-      "slots": {
-        "Object": {
-          "name": "Object",
-          "value": "switch"
-        }
-      }
-    },
     "locale": "en-GB",
     "timestamp": "2017-10-04T14:29:34Z"
   },

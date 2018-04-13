@@ -1,12 +1,22 @@
 {
-  "__comment": "Attempt to use door without key",
+  "__comment": "Travel south to your death",
 
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
     "attributes": {
-      "STATE": "001",
-      "flags": {}
+      "STATE": "002",
+      "flags": {
+        "world": {
+          "inventory_brass_key": 0
+        },
+        "state": {
+          "001": {
+            "open_door": 0
+          }
+        }
+      },
+      "inventory": {}
     },
     "user": {
       "userId": "amzn1.ask.account.[unique-value-here]"
@@ -24,7 +34,7 @@
       "slots": {
         "ItemOrObjectA": {
           "name": "ItemOrObjectA",
-          "value": "door"
+          "value": "south door"
         }
       }
     },

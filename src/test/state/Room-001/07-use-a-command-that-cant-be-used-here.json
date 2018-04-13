@@ -1,9 +1,22 @@
 {
+  "__comment": "Attempt to use a command that can't be used",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
     "attributes": {
-      "STATE": "MainMenu"
+      "STATE": "001",
+      "flags": {
+        "world": {
+          "inventory_brass_key": 0
+        },
+        "state": {
+          "001": {
+            "open_door": 0
+          }
+        }
+      },
+      "inventory": {}
     },
     "user": {
       "userId": "amzn1.ask.account.[unique-value-here]"
@@ -17,7 +30,13 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "NewGameIntent"
+      "name": "SayIntent",
+      "slots": {
+        "command": {
+          "name": "command",
+          "value": "Desist"
+        }
+      }
     },
     "locale": "en-GB",
     "timestamp": "2017-10-04T14:29:34Z"

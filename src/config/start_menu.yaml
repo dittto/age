@@ -2,6 +2,7 @@ start_menu:
     main_menu:
         description: Welcome to AGE test. "Start a new game" or listen to the "credits"
         repeat: You need to respond or this will end
+        image: menu/welcome.png
 
     new_game_prefix: This is a spooky new game.
 
@@ -10,10 +11,13 @@ start_menu:
             AGE test created by Nick Stacey. Say the name of the person you want to here more about,
             or main menu
         repeat: Say the name of the person you want to here more about, or main menu
+        image: menu/credits.png
         list:
             people:
-                "Nick Stacey": |-
-                    The author of AGE.
+                "Nick Stacey":
+                    description: |-
+                        The author of AGE.
+                    image: menu/nick_stacey.png
             suffix: Say another name, credits to list all credits again, or main menu
             unmatched: That name could not be found. Say another name, credits to list all credits again, or main menu
             repeat: Say another name, credits to list all credits again, or main menu
@@ -22,9 +26,11 @@ start_menu:
         MainMenu:
             description: The current valid commands are "New game" or "Credits"
             repeat: If you'd like a list of valid commands, please say Repeat
+            image: menu/help_main_menu.png
         Credits:
             description: The current valid commands are "Credits" for a full list, "More about person's name" for more information about a particular person, or "Main Menu"
             repeat: If you'd like a list of valid commands, please say Repeat
+            image: menu/help_credits.png
 
     unhandled:
         description: I don't understand that command at this time. Try again

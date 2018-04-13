@@ -1,9 +1,19 @@
 {
+  "__comment": "Attempt to pick up an already held brass key",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
     "attributes": {
-      "STATE": "MainMenu"
+      "STATE": "001",
+      "flags": {
+        "world": {
+          "inventory_brass_key": 0
+        }
+      },
+      "inventory": {
+        "brass_key": 1
+      }
     },
     "user": {
       "userId": "amzn1.ask.account.[unique-value-here]"
@@ -17,11 +27,11 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "CreditsMoreIntent",
+      "name": "PickUpIntent",
       "slots": {
-        "Credit": {
-          "name": "Credit",
-          "value": "Jim bob"
+        "ItemOrObjectA": {
+          "name": "ItemOrObjectA",
+          "value": "brass key"
         }
       }
     },

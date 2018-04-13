@@ -1,10 +1,11 @@
 'use strict';
 
 class Main {
-    constructor(alexa, config, plugins) {
+    constructor(alexa, config, plugins, s3Path) {
         this.alexa = alexa;
         this.config = config;
         this.plugins = plugins;
+        this.s3Path = s3Path;
     }
 
     getHandlers() {
@@ -32,6 +33,9 @@ class Main {
         response = this.__getStateResponse(response);
 
         alexaContext.handler.state = this.config.getState();
+        if (alexaContext.handler.state === '') {
+            delete alexaContext.attributes['STATE'];
+        }
 
         if (response.getAutoStateRedirect() !== '') {
             alexaContext.emitWithState(response.getAutoStateRedirect());
@@ -44,8 +48,15 @@ class Main {
             alexaContext.response.listen(response.getRepeat());
         }
 
+        if (response.hasImage()) {
+            const builder = new this.alexa.templateBuilders.BodyTemplate7Builder();
+            const template = builder.setBackgroundImage(this.alexa.utils.ImageUtils.makeImage(this.s3Path + response.getImage()))
+                .setBackButtonBehavior('HIDDEN')
+                .build();
+            alexaContext.response.renderTemplate(template);
+        }
+
         alexaContext.emit(':saveState', true);
-        // alexaContext.emit(':responseReady');
     }
 
     __getStateResponse(response) {

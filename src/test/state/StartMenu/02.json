@@ -1,4 +1,6 @@
 {
+  "__comment": "Changes from main menu to credits page",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",

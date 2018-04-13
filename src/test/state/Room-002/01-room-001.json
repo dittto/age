@@ -1,4 +1,6 @@
 {
+  "__comment": "Travel back to room 001",
+
   "session": {
     "new": true,
     "sessionId": "amzn1.echo-api.session.[unique-value-here]",
@@ -6,8 +8,7 @@
       "STATE": "002",
       "flags": {
         "world": {
-          "inventory_brass_key": 0,
-          "second_room_jester_feelings": 3
+          "inventory_brass_key": 0
         },
         "state": {
           "001": {
@@ -29,11 +30,11 @@
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.[unique-value-here]",
     "intent": {
-      "name": "MoveIntent",
+      "name": "UseIntent",
       "slots": {
-        "Direction": {
-          "name": "Direction",
-          "value": "north"
+        "ItemOrObjectA": {
+          "name": "ItemOrObjectA",
+          "value": "west door"
         }
       }
     },
